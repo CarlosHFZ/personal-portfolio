@@ -15,13 +15,19 @@ const contactSchema = z.object({
 
 // Set up transporter for development environment
 const createDevTransporter = () => {
+  // Create a test account for development purposes
+  const testAccount = {
+    user: 'qcn6vvwhb4qohblq@ethereal.email',
+    pass: 'aNTNakr7bDmU1G2UAk'
+  };
+  
   return nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
     secure: false,
     auth: {
-      user: process.env.EMAIL_USER || "ethereal.user@ethereal.email",
-      pass: process.env.EMAIL_PASS || "ethereal_pass"
+      user: process.env.EMAIL_USER || testAccount.user,
+      pass: process.env.EMAIL_PASS || testAccount.pass
     }
   });
 };

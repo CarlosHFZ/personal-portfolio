@@ -145,7 +145,7 @@ const Skills = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700"
+                  className="text-center p-4 rounded-lg bg-gray-50/50 dark:bg-gray-700/50"
                 >
                   <div className="text-2xl text-green-500 mb-2">
                     <skill.icon className="mx-auto h-6 w-6" />
