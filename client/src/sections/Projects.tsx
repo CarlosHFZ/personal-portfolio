@@ -28,7 +28,7 @@ const Projects = () => {
   const displayProjects = githubRepos || projects;
 
   return (
-    <section id="projects" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-gray-850 rounded-3xl">
+    <section id="projects" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-slate-900 rounded-3xl">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
@@ -50,7 +50,7 @@ const Projects = () => {
               viewport={{ once: true }}
               className="animate-on-scroll"
             >
-              <Card className="overflow-hidden h-full flex flex-col">
+              <Card className="overflow-hidden h-full flex flex-col border-blue-200 dark:border-blue-900 bg-white dark:bg-slate-800 shadow-sm">
                 <div className="relative h-48 overflow-hidden">
                   <img 
                     src={project.image} 

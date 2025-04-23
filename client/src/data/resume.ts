@@ -15,15 +15,15 @@ export const resume = {
   summary: "Dynamic Full-Stack Developer specialized in scalable web solutions using Python and React. Proven track record in document automation and enhancing educational platforms with AI. Collaborative problem-solving skills and application of software development best practices ensure robust and sustainable code.",
   skills: {
     frontendSkills: [
-      { name: "React / ReactJS", level: "advanced", percentage: 85 },
-      { name: "TypeScript", level: "advanced", percentage: 80 },
-      { name: "JavaScript", level: "advanced", percentage: 90 }
+      { name: "React / ReactJS", level: "intermediate", percentage: 65 },
+      { name: "TypeScript", level: "intermediate", percentage: 60 },
+      { name: "JavaScript", level: "intermediate", percentage: 65 }
     ],
     backendSkills: [
-      { name: "Python", level: "expert", percentage: 95 },
-      { name: "NestJS", level: "advanced", percentage: 85 },
-      { name: "Django", level: "advanced", percentage: 80 },
-      { name: "FastAPI", level: "intermediate", percentage: 70 }
+      { name: "Python", level: "advanced", percentage: 85 },
+      { name: "NestJS", level: "intermediate", percentage: 65 },
+      { name: "Django", level: "intermediate", percentage: 65 },
+      { name: "FastAPI", level: "intermediate", percentage: 60 }
     ],
     databaseSkills: [
       "MySQL",
