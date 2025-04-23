@@ -130,7 +130,7 @@ const Skills = () => {
         </div>
         
         {/* Soft Skills */}
-        <Card className="mt-10 animate-on-scroll">
+        <Card className="mt-10 animate-on-scroll border-blue-200 dark:border-blue-900 bg-white dark:bg-slate-800 shadow-sm">
           <CardContent className="p-6 md:p-8">
             <h3 className="font-heading font-semibold text-xl text-gray-900 dark:text-white mb-6 flex items-center">
               <Brain className="text-primary dark:text-primary mr-3" />

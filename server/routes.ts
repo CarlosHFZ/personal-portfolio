@@ -4,6 +4,12 @@ import { storage } from "./storage";
 import nodemailer from "nodemailer";
 import { z } from "zod";
 import axios from "axios";
+import sgMail from "@sendgrid/mail";
+
+// Initialize SendGrid
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
 
 // Zod validation schema for contact form
 const contactSchema = z.object({
@@ -13,12 +19,39 @@ const contactSchema = z.object({
   message: z.string().min(10)
 });
 
-// Mock email sending for development environment
-const createDevTransporter = () => {
-  // Use the JSON transport in development mode
-  return nodemailer.createTransport({
-    jsonTransport: true // This doesn't actually send emails, just returns the email info
-  });
+// Email service configuration
+const getEmailService = () => {
+  // Use SendGrid if API key is available
+  if (process.env.SENDGRID_API_KEY) {
+    return {
+      async sendMail(options: any) {
+        const msg = {
+          to: options.to,
+          from: 'portfolio@carloshenrique.dev', // Use a verified sender
+          subject: options.subject,
+          text: options.text,
+          html: options.html,
+          replyTo: options.from
+        };
+        
+        try {
+          const response = await sgMail.send(msg);
+          return { 
+            messageId: response[0]?.headers['x-message-id'] || 'sent-with-sendgrid',
+            response: response[0]
+          };
+        } catch (error) {
+          console.error('SendGrid error:', error);
+          throw error;
+        }
+      }
+    };
+  } else {
+    // Fallback to JSON transport if SendGrid not configured
+    return nodemailer.createTransport({
+      jsonTransport: true
+    });
+  }
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -28,13 +61,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Validate the request body
       const validatedData = contactSchema.parse(req.body);
       
-      // Create transporter for email sending
-      const transporter = createDevTransporter();
+      // Get appropriate email service (SendGrid or development transport)
+      const emailService = getEmailService();
       
       // Email content
       const mailOptions = {
         from: validatedData.email,
-        to: "kalizehnder@outlook.com",
+        to: "kalizehnder@gmail.com", // The recipient email address
         subject: `Portfolio Contact: ${validatedData.subject}`,
         text: `
           Name: ${validatedData.name}
@@ -54,8 +87,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
       
       // Send email
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email sent:", info.messageId);
+      const info = await emailService.sendMail(mailOptions);
+      console.log("Email sent:", info.messageId || 'Mail sent successfully');
       
       res.status(200).json({ success: true, message: "Message sent successfully" });
     } catch (error) {
