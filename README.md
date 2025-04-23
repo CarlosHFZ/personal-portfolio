@@ -20,8 +20,6 @@ Este é meu portfolio profissional, colocando todo meu conhecimento na area e mo
 
 ## Instruções para Executar Localmente
 
-
-
 1. **Clone o repositório**
    ```
    git clone [URL DO SEU REPOSITÓRIO]
@@ -41,7 +39,8 @@ Este é meu portfolio profissional, colocando todo meu conhecimento na area e mo
    ```
    npm run dev
    ```
-
 5. **Acessar o site localmente**
    - Abra [http://localhost:5000] no seu navegador
+  
+  ## Trabalhando no deploy......
 
