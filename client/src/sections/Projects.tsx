@@ -5,6 +5,16 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { resume } from "@/data/resume";
 
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+  repository: string;
+  demo?: string | null;
+  image: string;
+  technologies: string[];
+}
+
 interface GitHubRepo {
   id: number;
   name: string;
@@ -25,7 +35,7 @@ const Projects = () => {
   });
 
   // Fallback to our predefined projects if GitHub API fails
-  const displayProjects = githubRepos || projects;
+  const displayProjects = githubRepos && Array.isArray(githubRepos) ? githubRepos : projects as Project[];
 
   return (
     <section id="projects" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-slate-900 rounded-3xl">
