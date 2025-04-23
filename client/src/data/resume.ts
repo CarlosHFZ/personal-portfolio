@@ -16,14 +16,13 @@ export const resume = {
   skills: {
     frontendSkills: [
       { name: "React / ReactJS", level: "intermediate", percentage: 65 },
-      { name: "TypeScript", level: "intermediate", percentage: 60 },
-      { name: "JavaScript", level: "intermediate", percentage: 65 }
+      { name: "TypeScript", level: "intermediate", percentage: 60 }
     ],
     backendSkills: [
       { name: "Python", level: "advanced", percentage: 85 },
       { name: "NestJS", level: "intermediate", percentage: 65 },
-      { name: "Django", level: "intermediate", percentage: 65 },
-      { name: "FastAPI", level: "intermediate", percentage: 60 }
+      { name: "Django", level: "basic", percentage: 40 },
+      { name: "FastAPI", level: "basic", percentage: 40 }
     ],
     databaseSkills: [
       "MySQL",
@@ -46,31 +45,7 @@ export const resume = {
       { name: "adaptability", icon: IterationCcw }
     ]
   },
-  experiences: [
-    {
-      role: "fullstack",
-      company: "ReviseWell",
-      period: "Nov 2024 - Current",
-      responsibilities: [
-        "Web development with NestJS, React and Python using modular architecture and OOP",
-        "Building educational platform with AI integration and interactive features",
-        "Focus on scalability, API optimization and development best practices",
-        "Python solutions for generative AI, OOP and PDF manipulation",
-        "Automated generation of academic documents",
-        "Flow automation and support for scientific research projects"
-      ]
-    },
-    {
-      role: "backend",
-      company: "Freelancer",
-      period: "Aug 2024 - Oct 2024",
-      responsibilities: [
-        "Web application development using React, NestJS and TypeScript",
-        "Python development and AI integration using NestJS",
-        "OOP backend, database optimization and scalable solutions"
-      ]
-    }
-  ],
+  experiences: [],
   awards: [
     {
       title: "2nd Place - Hackathon Jovem Programador 2022",
