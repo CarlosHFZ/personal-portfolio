@@ -10,7 +10,7 @@ const Skills = () => {
   const { frontendSkills, backendSkills, databaseSkills, toolSkills, softSkills } = resume.skills;
 
   return (
-    <section id="skills" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-gray-850 rounded-3xl">
+    <section id="skills" className="container mx-auto px-4 py-16 rounded-3xl">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
@@ -69,8 +69,7 @@ const Skills = () => {
                       <span className="font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
                       <span className="text-sm text-primary dark:text-primary">{t(`skills.levels.${skill.level}`)}</span>
                     </div>
-                    <Progress value={skill.percentage} className="h-2 bg-gray-200 dark:bg-gray-700" 
-                      indicatorClassName="bg-cyan-600 dark:bg-cyan-500" />
+                    <Progress value={skill.percentage} className="h-2 bg-gray-200 dark:bg-gray-700" />
                   </motion.div>
                 ))}
               </div>
