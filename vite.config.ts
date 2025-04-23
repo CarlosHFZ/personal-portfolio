@@ -4,7 +4,12 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default async () => {
-  const plugins = [react(), runtimeErrorOverlay()];
+  // Garantindo que plugins seja sempre um array
+  const plugins: Array<any> = [react()];
+
+  if (process.env.NODE_ENV !== "production") {
+    plugins.push(runtimeErrorOverlay());
+  }
 
   if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
     const { cartographer } = await import("@replit/vite-plugin-cartographer");
@@ -13,7 +18,7 @@ export default async () => {
 
   return defineConfig({
     base: '/',
-    plugins,
+    plugins,  // Garantir que plugins seja um array de plugins
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "client", "src"),
@@ -25,6 +30,7 @@ export default async () => {
     build: {
       outDir: path.resolve(__dirname, "dist/public"),
       emptyOutDir: true,
+      sourcemap: process.env.NODE_ENV === "production" ? false : true,
     },
   });
 };
