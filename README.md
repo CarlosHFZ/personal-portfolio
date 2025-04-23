@@ -1,6 +1,6 @@
 # Portfolio de Carlos Henrique Farias Zehnder
 
-Este é um portfolio profissional para Carlos, um desenvolvedor Full-Stack com experiência em Python, React e outras tecnologias.
+Este é meu portfolio profissional, colocando todo meu conhecimento na area e mostrando ao mundo.
 
 ## Características
 
@@ -19,6 +19,8 @@ Este é um portfolio profissional para Carlos, um desenvolvedor Full-Stack com e
 - **Estilo e Componentes:** Tailwind CSS, Shadcn UI
 
 ## Instruções para Executar Localmente
+
+
 
 1. **Clone o repositório**
    ```
@@ -40,21 +42,6 @@ Este é um portfolio profissional para Carlos, um desenvolvedor Full-Stack com e
    npm run dev
    ```
 
-5. **Acesse o site**
-   - Abra [http://localhost:3000](http://localhost:3000) no seu navegador
+5. **Acessar o site localmente**
+   - Abra [http://localhost:5000] no seu navegador
 
-## Personalização
-
-Você pode personalizar o conteúdo do portfolio editando os seguintes arquivos:
-
-- `client/src/data/resume.ts` - Informações principais do currículo
-- `client/src/data/translations/` - Traduções para português e inglês
-- `client/src/index.css` - Estilos globais e cores
-
-## Deployment
-
-Este projeto pode ser facilmente implantado em plataformas como Vercel, Netlify ou GitHub Pages.
-
-## Licença
-
-MIT

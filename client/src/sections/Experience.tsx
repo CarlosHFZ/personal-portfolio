@@ -64,14 +64,14 @@ const Experience = () => {
         
         {/* Awards */}
         <div className="mt-12">
-          <h3 className="font-heading font-semibold text-2xl text-gray-900 dark:text-white mb-6">
+          <h3 className="font-heading font-semibold text-2xl bg- text-gray-900 dark:text-white mb-6 ">
             {t("experience.awards.title")}
           </h3>
           
-          <Card className="animate-on-scroll">
+          <Card className="animate-on-scroll ">
             <CardContent className="p-6 md:p-8">
               {awards.map((award, index) => (
-                <div key={index} className="flex items-center gap-4">
+                <div key={index} className="flex items-center gap-4 ">
                   <div className="text-4xl text-yellow-500">
                     <Trophy className="h-10 w-10" />
                   </div>
