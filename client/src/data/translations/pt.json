@@ -34,6 +34,7 @@
     "soft": "Habilidades Interpessoais",
     "levels": {
       "beginner": "Iniciante",
+      "basic": "Básico-Intermediário",
       "intermediate": "Intermediário",
       "advanced": "Avançado",
       "expert": "Especialista"

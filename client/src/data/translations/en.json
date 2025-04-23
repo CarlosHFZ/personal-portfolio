@@ -34,6 +34,7 @@
     "soft": "Soft Skills",
     "levels": {
       "beginner": "Beginner",
+      "basic": "Basic-Intermediate",
       "intermediate": "Intermediate",
       "advanced": "Advanced",
       "expert": "Expert"
