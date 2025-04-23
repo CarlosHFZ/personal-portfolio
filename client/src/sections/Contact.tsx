@@ -99,6 +99,11 @@ const Contact = () => {
                       >
                         kalizehnder@outlook.com
                       </a>
+                      {/* <p 
+                        className="text-gray-700 dark:text-gray-300"
+                      >
+                        kalizehnder@outlook.com
+                      </p> */}
                     </div>
                   </div>
                   

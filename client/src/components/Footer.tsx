@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <div className="text-2xl font-heading font-bold text-white">CARLOS.Z</div>
+            <div className="text-2xl font-heading font-bold text-white">CARLOS H. F. Z.</div>
             <p className="mt-2 text-gray-400">{t("footer.role")}</p>
           </div>
 
