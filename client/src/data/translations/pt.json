@@ -1,0 +1,152 @@
+{
+  "language": "Idioma",
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "skills": "Habilidades",
+    "experience": "Experiência",
+    "projects": "Projetos",
+    "education": "Educação",
+    "contact": "Contato"
+  },
+  "hero": {
+    "role": "Desenvolvedor Full-Stack",
+    "summary": "Especializado em soluções web escaláveis usando Python e React. Histórico comprovado em automação de documentos e aprimoramento de plataformas educacionais com IA.",
+    "contactButton": "Entre em Contato",
+    "projectsButton": "Ver Projetos"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "description": "Desenvolvedor Full-Stack Dinâmico, especializado em soluções web escaláveis usando Python e React. Possuo histórico comprovado em automatização de geração de documentos e aprimoramento de plataformas educacionais com IA. Possuo habilidade na resolução colaborativa de problemas e na aplicação de melhores práticas em desenvolvimento de software, garantindo código robusto e sustentável.",
+    "contactInfo": "Informações de Contato",
+    "languages": "Idiomas",
+    "portuguese": "Português",
+    "english": "Inglês",
+    "bilingual": "Bilíngue",
+    "advanced": "Avançado"
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "frontend": "Desenvolvimento Frontend",
+    "backend": "Desenvolvimento Backend",
+    "databases": "Bancos de Dados & Dados",
+    "tools": "Ferramentas & Práticas",
+    "soft": "Habilidades Interpessoais",
+    "levels": {
+      "beginner": "Iniciante",
+      "intermediate": "Intermediário",
+      "advanced": "Avançado",
+      "expert": "Especialista"
+    },
+    "softSkills": {
+      "teamwork": "Trabalho em Equipe",
+      "creativeThinking": "Pensamento Criativo",
+      "problemSolving": "Resolução de Problemas",
+      "adaptability": "Adaptabilidade"
+    }
+  },
+  "experience": {
+    "title": "Experiência Profissional",
+    "roles": {
+      "fullstack": "Desenvolvedor Full-Stack",
+      "backend": "Desenvolvedor Backend"
+    },
+    "responsibilities": {
+      "fullstack": {
+        "0": "Experiência sólida em desenvolvimento web com NestJS, React e Python aplicando arquitetura modular e orientação a objetos.",
+        "1": "Construção de plataforma educacional com integração de inteligência artificial e recursos interativos.",
+        "2": "Foco em escalabilidade, otimização de APIs e melhores práticas de desenvolvimento.",
+        "3": "Desenvolvimento de soluções em Python com foco em IA generativa, orientação a objetos e manipulação de PDFs.",
+        "4": "Implementação de features para geração automatizada de documentos acadêmicos.",
+        "5": "Atuação em automação de fluxos e suporte a projetos de pesquisa científica."
+      },
+      "backend": {
+        "0": "Experiência prática no desenvolvimento de aplicações web utilizando React, NestJS e TypeScript, além de APIs e microsserviços.",
+        "1": "Experiência sólida em desenvolvimento Python e atuação com inteligência artificial aplicada em integração de sistemas usando NestJS.",
+        "2": "Familiaridade com back-end orientado a objetos (POO), otimização de bancos de dados e construção de soluções escaláveis."
+      }
+    },
+    "awards": {
+      "title": "Prêmios & Reconhecimentos",
+      "items": [
+        {
+          "title": "2º lugar no Hackathon - Jovem Programador 2022",
+          "description": "Premiado com um dispositivo Alexa por solução de software inovadora"
+        }
+      ]
+    }
+  },
+  "projects": {
+    "title": "Projetos em Destaque",
+    "description": "Estes projetos destacam minhas habilidades técnicas e capacidade de resolução de problemas em aplicações do mundo real.",
+    "viewCode": "Ver Código",
+    "liveDemo": "Demonstração",
+    "viewMore": "Ver Mais no GitHub"
+  },
+  "education": {
+    "title": "Educação & Certificações",
+    "formalEducation": "Educação Formal",
+    "certifications": "Cursos & Certificações",
+    "degrees": [
+      {
+        "title": "Bacharelado em Sistemas de Informação",
+        "institution": "Uniasselvi",
+        "description": "Fundamentos da programação, POO, engenharia de software, SOLID, Java, HTML, CSS, Banco de dados relacional - MySQL e não relacional - MongoDB, UML e governança da informação."
+      }
+    ],
+    "courses": [
+      {
+        "title": "Python 3+ Básico ao Avançado",
+        "institution": "Udemy",
+        "description": "PySide6, Django, Selenium, Regexp, Testes, TDD, POO, Design Patterns GoF, algoritmos e programação."
+      },
+      {
+        "title": "Inglês",
+        "institution": "TopWAy",
+        "description": "Do iniciante à fluência"
+      },
+      {
+        "title": "Programação Back-end",
+        "institution": "Senac",
+        "description": "Python"
+      },
+      {
+        "title": "Programação Web",
+        "institution": "Senac",
+        "description": "CSS, HTML"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "description": "Interessado em trabalharmos juntos ou tem alguma pergunta? Sinta-se à vontade para entrar em contato!",
+    "info": {
+      "title": "Informações de Contato",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "location": "Localização",
+      "profiles": "Perfis"
+    },
+    "form": {
+      "title": "Envie uma Mensagem",
+      "name": "Nome",
+      "email": "E-mail",
+      "subject": "Assunto",
+      "message": "Mensagem",
+      "submit": "Enviar Mensagem",
+      "sending": "Enviando..."
+    },
+    "success": {
+      "title": "Mensagem Enviada",
+      "description": "Obrigado pela sua mensagem! Entrarei em contato em breve."
+    },
+    "error": {
+      "title": "Falha no Envio",
+      "description": "Desculpe, houve um problema ao enviar sua mensagem. Por favor, tente novamente mais tarde."
+    }
+  },
+  "footer": {
+    "role": "Desenvolvedor Full-Stack",
+    "copyright": "Carlos Henrique Farias Zehnder. Todos os direitos reservados."
+  }
+}

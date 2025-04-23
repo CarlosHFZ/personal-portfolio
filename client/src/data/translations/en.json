@@ -1,0 +1,152 @@
+{
+  "language": "Language",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "role": "Full-Stack Developer",
+    "summary": "Specialized in scalable web solutions using Python and React. Proven track record in document automation and enhancing educational platforms with AI.",
+    "contactButton": "Get in Touch",
+    "projectsButton": "View Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Dynamic Full-Stack Developer specialized in scalable web solutions using Python and React. I have a proven track record in document automation and enhancing educational platforms with AI. My collaborative problem-solving skills and application of software development best practices ensure robust and sustainable code.",
+    "contactInfo": "Contact Information",
+    "languages": "Languages",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "bilingual": "Bilingual",
+    "advanced": "Advanced"
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "frontend": "Frontend Development",
+    "backend": "Backend Development",
+    "databases": "Databases & Data",
+    "tools": "Tools & Practices",
+    "soft": "Soft Skills",
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "expert": "Expert"
+    },
+    "softSkills": {
+      "teamwork": "Teamwork",
+      "creativeThinking": "Creative Thinking",
+      "problemSolving": "Problem Solving",
+      "adaptability": "Adaptability"
+    }
+  },
+  "experience": {
+    "title": "Work Experience",
+    "roles": {
+      "fullstack": "Full-Stack Developer",
+      "backend": "Backend Developer"
+    },
+    "responsibilities": {
+      "fullstack": {
+        "0": "Experience in web development with NestJS, React and Python applying modular architecture and object-oriented design.",
+        "1": "Built an educational platform with AI integration and interactive features.",
+        "2": "Focus on scalability, API optimization and development best practices.",
+        "3": "Developed Python solutions focused on generative AI, object-oriented programming and PDF manipulation.",
+        "4": "Implemented features for automated generation of academic documents.",
+        "5": "Worked on flow automation and support for scientific research projects."
+      },
+      "backend": {
+        "0": "Practical experience in developing web applications using React, NestJS and TypeScript, as well as APIs and microservices.",
+        "1": "Solid experience in Python development and working with artificial intelligence applied to system integration using NestJS.",
+        "2": "Familiarity with object-oriented backend (OOP), database optimization and building scalable solutions."
+      }
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "items": [
+        {
+          "title": "2nd Place - Hackathon Jovem Programador 2022",
+          "description": "Awarded an Alexa device as prize for innovative software solution"
+        }
+      ]
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "description": "These projects highlight my technical skills and problem-solving abilities in real-world applications.",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo",
+    "viewMore": "View More on GitHub"
+  },
+  "education": {
+    "title": "Education & Certifications",
+    "formalEducation": "Formal Education",
+    "certifications": "Courses & Certifications",
+    "degrees": [
+      {
+        "title": "Bachelor's Degree in Information Systems",
+        "institution": "Uniasselvi",
+        "description": "Programming fundamentals, OOP, software engineering, SOLID, Java, HTML, CSS, relational databases - MySQL and non-relational - MongoDB, UML and information governance."
+      }
+    ],
+    "courses": [
+      {
+        "title": "Python 3+ Basic to Advanced",
+        "institution": "Udemy",
+        "description": "PySide6, Django, Selenium, Regexp, Testing, TDD, OOP, GoF Design Patterns, algorithms and programming."
+      },
+      {
+        "title": "English",
+        "institution": "TopWAy",
+        "description": "From beginner to fluency"
+      },
+      {
+        "title": "Back-end Programming",
+        "institution": "Senac",
+        "description": "Python"
+      },
+      {
+        "title": "Web Programming",
+        "institution": "Senac",
+        "description": "CSS, HTML"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Interested in working together or have any questions? Feel free to reach out!",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "profiles": "Profiles"
+    },
+    "form": {
+      "title": "Send a Message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending..."
+    },
+    "success": {
+      "title": "Message Sent",
+      "description": "Thank you for your message! I will get back to you soon."
+    },
+    "error": {
+      "title": "Message Failed",
+      "description": "Sorry, there was a problem sending your message. Please try again later."
+    }
+  },
+  "footer": {
+    "role": "Full-Stack Developer",
+    "copyright": "Carlos Henrique Farias Zehnder. All rights reserved."
+  }
+}
