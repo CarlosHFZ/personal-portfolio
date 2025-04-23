@@ -13,22 +13,11 @@ const contactSchema = z.object({
   message: z.string().min(10)
 });
 
-// Set up transporter for development environment
+// Mock email sending for development environment
 const createDevTransporter = () => {
-  // Create a test account for development purposes
-  const testAccount = {
-    user: 'qcn6vvwhb4qohblq@ethereal.email',
-    pass: 'aNTNakr7bDmU1G2UAk'
-  };
-  
+  // Use the JSON transport in development mode
   return nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER || testAccount.user,
-      pass: process.env.EMAIL_PASS || testAccount.pass
-    }
+    jsonTransport: true // This doesn't actually send emails, just returns the email info
   });
 };
 

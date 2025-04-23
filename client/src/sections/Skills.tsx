@@ -10,7 +10,7 @@ const Skills = () => {
   const { frontendSkills, backendSkills, databaseSkills, toolSkills, softSkills } = resume.skills;
 
   return (
-    <section id="skills" className="container mx-auto px-4 py-16 rounded-3xl">
+    <section id="skills" className="container mx-auto px-4 py-16 rounded-3xl bg-gray-50 dark:bg-slate-900">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
@@ -21,7 +21,7 @@ const Skills = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Frontend Skills */}
-          <Card className="animate-on-scroll">
+          <Card className="animate-on-scroll border-blue-200 dark:border-blue-900 bg-white dark:bg-slate-800 shadow-sm">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-heading font-semibold text-xl text-gray-900 dark:text-white mb-6 flex items-center">
                 <Code className="text-primary dark:text-primary mr-3" />
@@ -49,7 +49,7 @@ const Skills = () => {
           </Card>
           
           {/* Backend Skills */}
-          <Card className="animate-on-scroll">
+          <Card className="animate-on-scroll border-blue-200 dark:border-blue-900 bg-white dark:bg-slate-800 shadow-sm">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-heading font-semibold text-xl text-gray-900 dark:text-white mb-6 flex items-center">
                 <Server className="text-primary dark:text-primary mr-3" />
@@ -77,7 +77,7 @@ const Skills = () => {
           </Card>
           
           {/* Databases */}
-          <Card className="animate-on-scroll">
+          <Card className="animate-on-scroll border-blue-200 dark:border-blue-900 bg-white dark:bg-slate-800 shadow-sm">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-heading font-semibold text-xl text-gray-900 dark:text-white mb-6 flex items-center">
                 <Database className="text-primary dark:text-primary mr-3" />
@@ -103,7 +103,7 @@ const Skills = () => {
           </Card>
           
           {/* Bolt & Methodologies */}
-          <Card className="animate-on-scroll">
+          <Card className="animate-on-scroll border-blue-200 dark:border-blue-900 bg-white dark:bg-slate-800 shadow-sm">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-heading font-semibold text-xl text-gray-900 dark:text-white mb-6 flex items-center">
                 <Bolt className="text-primary dark:text-primary mr-3" />
