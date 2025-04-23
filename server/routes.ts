@@ -7,6 +7,7 @@ import axios from "axios";
 import sgMail from "@sendgrid/mail";
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 // Initialize SendGrid
 if (process.env.SENDGRID_API_KEY) {
