@@ -48,7 +48,7 @@ const Hero = () => {
           <div className="relative">
             <div className="aspect-square overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-primary/10 to-cyan-100/50 dark:from-primary/30 dark:to-cyan-900/30 p-1">
               <img 
-                src="https://images.unsplash.com/photo-1603575448878-868a20723f5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="/images/carlosProfile.png" 
                 alt="Carlos Henrique Farias Zehnder" 
                 className="w-full h-full object-cover rounded-xl"
               />
