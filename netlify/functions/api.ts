@@ -1,4 +1,4 @@
-import { Handler } from '@netlify/functions';
+import { Handler, HandlerEvent, HandlerResponse } from '@netlify/functions';
 import { z } from "zod";
 import sgMail from "@sendgrid/mail";
 
@@ -15,7 +15,7 @@ const contactSchema = z.object({
   message: z.string().min(10)
 });
 
-const handler: Handler = async (event) => {
+const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> => {
   // Handle CORS
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -24,6 +24,7 @@ const handler: Handler = async (event) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Content-Type': 'text/plain'
       },
       body: '',
     };
@@ -60,7 +61,7 @@ const handler: Handler = async (event) => {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ message: 'Email sent successfully' }),
       };
@@ -70,7 +71,7 @@ const handler: Handler = async (event) => {
         statusCode: 500,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ message: 'Error sending email' }),
       };
@@ -97,7 +98,7 @@ const handler: Handler = async (event) => {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(repos),
       };
@@ -107,7 +108,7 @@ const handler: Handler = async (event) => {
         statusCode: 500,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ message: 'Error fetching GitHub repos' }),
       };
@@ -119,7 +120,7 @@ const handler: Handler = async (event) => {
     statusCode: 404,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({ message: 'Not found' }),
   };
