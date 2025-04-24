@@ -5,6 +5,8 @@ import sgMail from "@sendgrid/mail";
 // Initialize SendGrid
 if (process.env.SENDGRID_API_KEY) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+} else {
+  console.error('SENDGRID_API_KEY is not set');
 }
 
 // Zod validation schema for contact form
@@ -16,6 +18,12 @@ const contactSchema = z.object({
 });
 
 const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> => {
+  console.log('Received request:', {
+    method: event.httpMethod,
+    path: event.path,
+    body: event.body
+  });
+
   // Handle CORS
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -33,11 +41,18 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   // Handle contact form submission
   if (event.httpMethod === 'POST' && event.path === '/contact') {
     try {
+      console.log('Processing contact form submission');
       const body = JSON.parse(event.body || '{}');
+      console.log('Parsed body:', body);
+      
       const validatedData = contactSchema.parse(body);
+      console.log('Validated data:', validatedData);
 
       const toEmail = process.env.TO_EMAIL || "kalizehnder@gmail.com";
       const senderEmail = process.env.FROM_EMAIL || 'kalizehnder@outlook.com';
+
+      console.log('Sending email to:', toEmail);
+      console.log('From:', senderEmail);
 
       const msg = {
         to: toEmail,
@@ -56,6 +71,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
       };
 
       await sgMail.send(msg);
+      console.log('Email sent successfully');
 
       return {
         statusCode: 200,
@@ -73,7 +89,10 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: 'Error sending email' }),
+        body: JSON.stringify({ 
+          message: 'Error sending email',
+          error: error instanceof Error ? error.message : 'Unknown error'
+        }),
       };
     }
   }
@@ -81,6 +100,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   // Handle GitHub repos request
   if (event.httpMethod === 'GET' && event.path === '/github-repos') {
     try {
+      console.log('Fetching GitHub repos');
       const response = await fetch('https://api.github.com/users/CarlosHFZ/repos', {
         headers: {
           'Accept': 'application/vnd.github.v3+json',
@@ -89,10 +109,11 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch GitHub repos');
+        throw new Error(`Failed to fetch GitHub repos: ${response.status} ${response.statusText}`);
       }
 
       const repos = await response.json();
+      console.log(`Fetched ${repos.length} repos`);
 
       return {
         statusCode: 200,
@@ -110,12 +131,16 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: 'Error fetching GitHub repos' }),
+        body: JSON.stringify({ 
+          message: 'Error fetching GitHub repos',
+          error: error instanceof Error ? error.message : 'Unknown error'
+        }),
       };
     }
   }
 
   // Handle 404 for unknown routes
+  console.log('Route not found:', event.path);
   return {
     statusCode: 404,
     headers: {
