@@ -30,7 +30,7 @@ const Projects = () => {
 
   // GitHub repositories query
   const { data: githubRepos, isLoading, isError } = useQuery({
-    queryKey: ['/api/github-repos'],
+    queryKey: ['/github-repos'],
     staleTime: 3600000, // 1 hour
   });
 
