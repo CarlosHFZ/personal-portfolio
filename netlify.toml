@@ -18,4 +18,5 @@
   NPM_CONFIG_PRODUCTION = "false"
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@netlify/functions"]
+  external_node_modules = ["@netlify/functions", "@sendgrid/mail", "zod"]
+  included_files = ["netlify/functions/api.ts"]

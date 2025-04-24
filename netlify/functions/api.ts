@@ -1,4 +1,4 @@
-import { Handler, HandlerEvent, HandlerResponse } from '@netlify/functions';
+import type { Handler, HandlerEvent, HandlerResponse } from '@netlify/functions';
 import { z } from "zod";
 import sgMail from "@sendgrid/mail";
 
