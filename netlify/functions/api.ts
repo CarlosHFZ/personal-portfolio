@@ -31,7 +31,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   }
 
   // Handle contact form submission
-  if (event.httpMethod === 'POST' && event.path === '/api/contact') {
+  if (event.httpMethod === 'POST' && event.path === '/contact') {
     try {
       const body = JSON.parse(event.body || '{}');
       const validatedData = contactSchema.parse(body);
