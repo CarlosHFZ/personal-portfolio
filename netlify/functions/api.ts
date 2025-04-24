@@ -79,7 +79,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   }
 
   // Handle GitHub repos request
-  if (event.httpMethod === 'GET' && event.path === '/api/github-repos') {
+  if (event.httpMethod === 'GET' && event.path === '/github-repos') {
     try {
       const response = await fetch('https://api.github.com/users/CarlosHFZ/repos', {
         headers: {
@@ -126,4 +126,4 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   };
 };
 
-export { handler };
+export default handler;
