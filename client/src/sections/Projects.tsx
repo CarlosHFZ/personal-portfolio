@@ -40,7 +40,7 @@ const Projects = () => {
   return (
     <section id="projects" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-slate-900 rounded-3xl">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
+        {/* <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
             {t("projects.title")}
           </h2>
@@ -112,7 +112,7 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
-        
+         */}
         <div className="text-center mt-10">
           <a 
             href="https://github.com/CarlosHFZ" 
