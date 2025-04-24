@@ -32,5 +32,14 @@ export default async () => {
       emptyOutDir: true,
       sourcemap: process.env.NODE_ENV === "production" ? false : true,
     },
+    server: {
+      port: 5173,
+      proxy: {
+        '/.netlify/functions': {
+          target: 'http://localhost:5000',
+          changeOrigin: true,
+        }
+      }
+    }
   });
 };

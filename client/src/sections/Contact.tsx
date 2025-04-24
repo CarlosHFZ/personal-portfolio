@@ -173,7 +173,7 @@ const Contact = () => {
             </Card>
           </div>
           
-          <div className="animate-on-scroll">
+          {/* <div className="animate-on-scroll">
             <Card>
               <CardContent className="p-6 md:p-8">
                 <h3 className="font-heading font-semibold text-xl text-gray-900 dark:text-white mb-6">
@@ -274,7 +274,7 @@ const Contact = () => {
                 </Form>
               </CardContent>
             </Card>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
