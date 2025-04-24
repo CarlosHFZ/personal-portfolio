@@ -17,7 +17,15 @@ const contactSchema = z.object({
   message: z.string().min(10)
 });
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Content-Type': 'application/json'
+};
+
 const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> => {
+  console.log('Node version:', process.version);
   console.log('Received request:', {
     method: event.httpMethod,
     path: event.path,
@@ -28,19 +36,14 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Content-Type': 'text/plain'
-      },
+      headers: corsHeaders,
       body: '',
     };
   }
 
-  // Handle contact form submission
-  if (event.httpMethod === 'POST' && event.path === '/contact') {
-    try {
+  try {
+    // Handle contact form submission
+    if (event.httpMethod === 'POST' && event.path === '/contact') {
       console.log('Processing contact form submission');
       const body = JSON.parse(event.body || '{}');
       console.log('Parsed body:', body);
@@ -75,31 +78,13 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
 
       return {
         statusCode: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        },
+        headers: corsHeaders,
         body: JSON.stringify({ message: 'Email sent successfully' }),
       };
-    } catch (error) {
-      console.error('Error sending email:', error);
-      return {
-        statusCode: 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-          message: 'Error sending email',
-          error: error instanceof Error ? error.message : 'Unknown error'
-        }),
-      };
     }
-  }
 
-  // Handle GitHub repos request
-  if (event.httpMethod === 'GET' && event.path === '/github-repos') {
-    try {
+    // Handle GitHub repos request
+    if (event.httpMethod === 'GET' && event.path === '/github-repos') {
       console.log('Fetching GitHub repos');
       const response = await fetch('https://api.github.com/users/CarlosHFZ/repos', {
         headers: {
@@ -117,38 +102,29 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
 
       return {
         statusCode: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        },
+        headers: corsHeaders,
         body: JSON.stringify(repos),
       };
-    } catch (error) {
-      console.error('Error fetching GitHub repos:', error);
-      return {
-        statusCode: 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-          message: 'Error fetching GitHub repos',
-          error: error instanceof Error ? error.message : 'Unknown error'
-        }),
-      };
     }
-  }
 
-  // Handle 404 for unknown routes
-  console.log('Route not found:', event.path);
-  return {
-    statusCode: 404,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message: 'Not found' }),
-  };
+    // Handle 404 for unknown routes
+    console.log('Route not found:', event.path);
+    return {
+      statusCode: 404,
+      headers: corsHeaders,
+      body: JSON.stringify({ message: 'Not found' }),
+    };
+  } catch (error) {
+    console.error('Error processing request:', error);
+    return {
+      statusCode: 500,
+      headers: corsHeaders,
+      body: JSON.stringify({ 
+        message: 'Internal server error',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }),
+    };
+  }
 };
 
 export default handler;

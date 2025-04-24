@@ -16,3 +16,5 @@
   node_bundler = "esbuild"
   external_node_modules = ["@netlify/functions", "@sendgrid/mail", "zod"]
   included_files = ["netlify/functions/api.ts"]
+  directory = "dist/functions"
+  node_version = "18"

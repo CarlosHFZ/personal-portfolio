@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development tsx server/index.ts",
-    "build": "vite build && esbuild netlify/functions/api.ts --platform=node --bundle --format=esm --outdir=dist/functions --external:@netlify/functions --external:@sendgrid/mail --external:zod --log-level=debug",
+    "build": "vite build && esbuild netlify/functions/api.ts --platform=node --bundle --format=esm --outdir=dist/functions --external:@netlify/functions --external:@sendgrid/mail --external:zod --external:node:buffer --external:node:stream --external:node:util --external:node:url --external:node:http --external:node:https --external:node:net --external:node:tls --external:node:zlib --external:node:crypto --external:node:fs --external:node:path --external:node:os --external:node:events --log-level=debug --target=node18",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",
     "db:push": "drizzle-kit push"
