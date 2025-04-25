@@ -8,13 +8,13 @@ Este é meu portfolio profissional, colocando todo meu conhecimento na area e mo
 - Tema claro/escuro
 - Suporte bilíngue (Português/Inglês)
 - Seções para habilidades, projetos, educação e contato
-- Formulário de contato funcional (usando SendGrid)
+- Formulário de contato funcional (usando SendGrid) - Preparando para Deploy
 
 ## Tecnologias Utilizadas
 
 - **Frontend:** React, TypeScript, Tailwind CSS, Framer Motion
 - **Backend:** Express, Node.js
-- **Formulário de Contato:** SendGrid API
+- **Formulário de Contato:** SendGrid API - Preparando para Deploy
 - **Internacionalização:** i18next
 - **Estilo e Componentes:** Tailwind CSS, Shadcn UI
 
