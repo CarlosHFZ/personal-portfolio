@@ -4,6 +4,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { resume } from "@/data/resume";
+import { API_BASE } from "@/utils/apiBase";
 
 interface Project {
   id: number;
@@ -29,10 +30,20 @@ const Projects = () => {
   const { projects } = resume;
 
   // GitHub repositories query
-  const { data: githubRepos, isLoading, isError } = useQuery({
-    queryKey: ['/github-repos'],
+  const { data: githubRepos, isLoading, isError, error } = useQuery({
+    queryKey: ['github-repos'],
+    queryFn: async () => {
+      const response = await fetch(`${API_BASE}/github-repos`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch repos: ${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    },
     staleTime: 3600000, // 1 hour
   });
+
+  console.log('GitHub Repos:', githubRepos);
+  console.log('Error:', error);
 
   // Fallback to our predefined projects if GitHub API fails
   const displayProjects = (githubRepos && Array.isArray(githubRepos) ? githubRepos : projects as Project[])
