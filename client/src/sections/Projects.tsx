@@ -33,17 +33,39 @@ const Projects = () => {
   const { data: githubRepos, isLoading, isError, error } = useQuery({
     queryKey: ['github-repos'],
     queryFn: async () => {
-      const response = await fetch(`${API_BASE}/github-repos`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch repos: ${response.status} ${response.statusText}`);
+      console.log('Fetching from:', `${API_BASE}/github-repos`);
+      try {
+        const response = await fetch(`${API_BASE}/github-repos`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        console.log('Response status:', response.status);
+        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Error response:', errorText);
+          throw new Error(`Failed to fetch repos: ${response.status} ${response.statusText}\n${errorText}`);
+        }
+        
+        const data = await response.json();
+        console.log('Received data:', data);
+        return data;
+      } catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
       }
-      return response.json();
     },
     staleTime: 3600000, // 1 hour
+    retry: 2,
   });
 
+  console.log('Query state:', { isLoading, isError, error });
   console.log('GitHub Repos:', githubRepos);
-  console.log('Error:', error);
 
   // Fallback to our predefined projects if GitHub API fails
   const displayProjects = (githubRepos && Array.isArray(githubRepos) ? githubRepos : projects as Project[])
@@ -60,6 +82,23 @@ const Projects = () => {
             {t("projects.description")}
           </p>
         </div>
+        
+        {isLoading && (
+          <div className="text-center py-8">
+            <p className="text-gray-600 dark:text-gray-400">Loading projects...</p>
+          </div>
+        )}
+
+        {isError && (
+          <div className="text-center py-8">
+            <p className="text-red-600 dark:text-red-400">
+              Error loading projects. Showing fallback projects.
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              {error instanceof Error ? error.message : 'Unknown error'}
+            </p>
+          </div>
+        )}
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8" id="github-projects">
           {displayProjects.map((project, index) => (
