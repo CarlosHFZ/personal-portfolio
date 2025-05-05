@@ -43,7 +43,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      await apiRequest("POST", "/api/contact", data);
+      await apiRequest("POST", "/contact", data);
       
       toast({
         title: t("contact.success.title"),
