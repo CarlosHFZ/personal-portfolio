@@ -19,7 +19,7 @@ const contactSchema = z.object({
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': process.env.NODE_ENV === 'production' 
-    ? 'https://carloshfz.com' 
+    ? 'https://carloshfz.netlify.app' 
     : 'http://localhost:5173',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -46,7 +46,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
 
   try {
     // Handle contact form submission
-    if (event.httpMethod === 'POST' && event.path === '/api/contact') {
+    if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/api/contact') {
       console.log('Processing contact form submission');
       const body = JSON.parse(event.body || '{}');
       console.log('Parsed body:', body);
@@ -87,7 +87,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
     }
 
     // Handle GitHub repos request
-    if (event.httpMethod === 'GET' && event.path === '/api/github-repos') {
+    if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/api/github-repos') {
       console.log('Fetching GitHub repos');
       const response = await fetch('https://api.github.com/users/CarlosHFZ/repos', {
         headers: {
