@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
   publish = "public/dist"
-  functions = "netlify/functions"
+  functions = "dist/functions"
 
 [dev]
   command = "npm run dev"
@@ -9,7 +9,7 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/:splat"
   status = 200
 
 [build.environment]
