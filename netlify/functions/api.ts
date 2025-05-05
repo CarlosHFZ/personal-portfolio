@@ -89,7 +89,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
     // Handle GitHub repos request
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/api/github-repos') {
       console.log('Fetching GitHub repos');
-      const response = await fetch('https://api.github.com/users/CarlosHFZ/repos', {
+      const response = await fetch('https://api.github.com/users/CarlosHFZ/repos?sort=updated&per_page=100', {
         headers: {
           'Accept': 'application/vnd.github.v3+json',
           'User-Agent': 'request'
@@ -103,10 +103,31 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
       const repos = await response.json();
       console.log(`Fetched ${repos.length} repos`);
 
+      const ignoredRepos = ["personal-portfolio", "gntech-test-carlos", "sistema_ponto", "ponto_web"];
+      console.log("Repositories to include:", ignoredRepos);
+
+      const filteredRepos = repos
+        .filter((repo: any) => {
+          const repoName = repo.name.trim().toLowerCase();
+          console.log("Checking repository:", repoName);
+          const shouldInclude = ignoredRepos.includes(repoName);
+          console.log("Should include:", shouldInclude);
+          return shouldInclude;
+        })
+        .map((repo: any, index: number) => ({
+          id: repo.id,
+          name: repo.name,
+          description: repo.description || "No description provided",
+          image: `/github_images/${index}.png`,
+          technologies: repo.topics || [],
+          repository: repo.html_url,
+          demo: repo.homepage || null
+        }));
+
       return {
         statusCode: 200,
         headers: corsHeaders,
-        body: JSON.stringify(repos),
+        body: JSON.stringify(filteredRepos),
       };
     }
 
