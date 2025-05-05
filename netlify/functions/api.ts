@@ -18,9 +18,12 @@ const contactSchema = z.object({
 });
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': process.env.NODE_ENV === 'production' 
+    ? 'https://carloshfz.com' 
+    : 'http://localhost:5173',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Credentials': 'true',
   'Content-Type': 'application/json'
 };
 
@@ -43,7 +46,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
 
   try {
     // Handle contact form submission
-    if (event.httpMethod === 'POST' && event.path === '/contact') {
+    if (event.httpMethod === 'POST' && event.path === '/api/contact') {
       console.log('Processing contact form submission');
       const body = JSON.parse(event.body || '{}');
       console.log('Parsed body:', body);
@@ -84,7 +87,7 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
     }
 
     // Handle GitHub repos request
-    if (event.httpMethod === 'GET' && event.path === '/github-repos') {
+    if (event.httpMethod === 'GET' && event.path === '/api/github-repos') {
       console.log('Fetching GitHub repos');
       const response = await fetch('https://api.github.com/users/CarlosHFZ/repos', {
         headers: {

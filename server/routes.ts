@@ -1,14 +1,23 @@
-import type { Express } from "express";
-import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import nodemailer from "nodemailer";
-import { z } from "zod";
-import axios from "axios";
-import sgMail from "@sendgrid/mail";
+import express, { Express } from 'express'; // Corrigido import
+import { createServer, type Server } from 'http';
+import nodemailer from 'nodemailer';
+import { z } from 'zod';
+import axios from 'axios';
+import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
+const app = express();
+app.use(express.json());
 
 dotenv.config();
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
+
+
+
 // Initialize SendGrid
 if (process.env.SENDGRID_API_KEY) {
   console.log("Initializing SendGrid with API key");
@@ -17,6 +26,7 @@ if (process.env.SENDGRID_API_KEY) {
 } else {
   console.log("WARNING: No SendGrid API key found in environment variables");
 }
+
 
 // Zod validation schema for contact form
 const contactSchema = z.object({
@@ -78,7 +88,9 @@ const getEmailService = () => {
   }
 };
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export const registerRoutes = (app: Express): Server => {
+
+  
   // API route for contact form
   app.post("/api/contact", async (req, res) => {
     try {
@@ -158,30 +170,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/github-repos", async (req, res) => {
     try {
       const username = "CarlosHFZ";
+      console.log(`Fetching GitHub repos for user: ${username}`);
       const response = await axios.get(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
-      
+      console.log('GitHub API response received');
+      console.log('Number of repositories:', response.data.length);
+      console.log('Repository names:', response.data.map((repo: any) => repo.name));
+  
       const ignoredRepos = ["personal-portfolio", "gntech-test-carlos", "sistema_ponto", "ponto_web"];
-
-      // Transform the data to match our project format
+      console.log("Repositories to include:", ignoredRepos);
+  
       const repositories = response.data
-      .filter((repo: any) => ignoredRepos.includes(repo.name.trim().toLowerCase()))
-      .map((repo: any, index: number) => ({
-        id: repo.id,
-        name: repo.name,
-        description: repo.description || "No description provided",
-        image: `/github_images/${index}.png`,
-        technologies: repo.topics || [],
-        repository: repo.html_url,
-        demo: repo.homepage || null
-      }));
-      
+        .filter((repo: any) => {
+          const repoName = repo.name.trim().toLowerCase();
+          console.log("Checking repository:", repoName);
+          const shouldInclude = ignoredRepos.includes(repoName);
+          console.log("Should include:", shouldInclude);
+          return shouldInclude;
+        })
+        .map((repo: any, index: number) => ({
+          id: repo.id,
+          name: repo.name,
+          description: repo.description || "No description provided",
+          image: `/github_images/${index}.png`,
+          technologies: repo.topics || [],
+          repository: repo.html_url,
+          demo: repo.homepage || null
+        }));
+  
       res.status(200).json(repositories);
     } catch (error) {
       console.error("Error fetching GitHub repos:", error);
       res.status(500).json({ error: "Failed to fetch GitHub repositories" });
     }
   });
+  
 
   const httpServer = createServer(app);
   return httpServer;
 }
+
+
+(async () => {
+  const server = registerRoutes(app); // Agora chama diretamente a função local
+
+  const port = 5000;
+  server.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+})();

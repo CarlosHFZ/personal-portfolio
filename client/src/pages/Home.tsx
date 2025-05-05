@@ -38,7 +38,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="pt-32 pb-16">
+    <div className="space-y-20">
       <Hero />
       <About />
       <Skills />
