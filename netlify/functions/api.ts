@@ -165,4 +165,4 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
   }
 };
 
-export default handler;
+exports.handler = handler;
