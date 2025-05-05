@@ -17,5 +17,4 @@
   external_node_modules = ["@netlify/functions", "@sendgrid/mail", "zod"]
   included_files = ["netlify/functions/api.ts"]
   directory = "dist/functions"
-  node_bundler = "esbuild"
   node_bundler_options = { format = "cjs" }
