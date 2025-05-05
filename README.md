@@ -17,6 +17,3 @@ Este é meu portfolio profissional, colocando todo meu conhecimento na area e mo
 - **Formulário de Contato:** SendGrid API - Preparando para Deploy
 - **Internacionalização:** i18next
 - **Estilo e Componentes:** Tailwind CSS, Shadcn UI
-
-
-Em desenvolvimento.....
