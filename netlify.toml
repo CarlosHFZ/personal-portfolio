@@ -1,24 +1,22 @@
 [build]
   command = "npm run build"
-  publish = "public/dist"
-  functions = "dist"
-
+  publish = "dist/public"
+  functions = "dist/functions"
 [dev]
   command = "npm run dev"
   port = 5000
-
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/*"
+  to = "/index.html"
   status = 200
-
 [build.environment]
   NODE_ENV = "production"
   NPM_CONFIG_PRODUCTION = "false"
-
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["@netlify/functions", "@sendgrid/mail", "zod"]
+  included_files = ["netlify/functions/api.ts"]
+  directory = "dist/functions"
   node_bundler_options = { format = "cjs", target = "node18" }
 
 [functions.environment]
