@@ -18,3 +18,5 @@ Este é meu portfolio profissional, colocando todo meu conhecimento na area e mo
 - **Internacionalização:** i18next
 - **Estilo e Componentes:** Tailwind CSS, Shadcn UI
 
+
+Em desenvolvimento.....
