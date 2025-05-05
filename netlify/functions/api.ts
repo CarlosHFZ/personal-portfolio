@@ -28,23 +28,24 @@ const corsHeaders = {
 };
 
 const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> => {
-  console.log('Node version:', process.version);
-  console.log('Received request:', {
-    method: event.httpMethod,
-    path: event.path,
-    body: event.body
-  });
-
-  // Handle CORS
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: corsHeaders,
-      body: '',
-    };
-  }
-
   try {
+    console.log('Node version:', process.version);
+    console.log('Environment:', process.env.NODE_ENV);
+    console.log('Received request:', {
+      method: event.httpMethod,
+      path: event.path,
+      body: event.body
+    });
+
+    // Handle CORS
+    if (event.httpMethod === 'OPTIONS') {
+      return {
+        statusCode: 200,
+        headers: corsHeaders,
+        body: '',
+      };
+    }
+
     // Handle contact form submission
     if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/api/contact') {
       console.log('Processing contact form submission');
@@ -88,47 +89,62 @@ const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> =
 
     // Handle GitHub repos request
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/api/github-repos') {
-      console.log('Fetching GitHub repos');
-      const response = await fetch('https://api.github.com/users/CarlosHFZ/repos?sort=updated&per_page=100', {
-        headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'User-Agent': 'request'
+      try {
+        console.log('Fetching GitHub repos');
+        const response = await fetch('https://api.github.com/users/CarlosHFZ/repos?sort=updated&per_page=100', {
+          headers: {
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'request'
+          }
+        });
+
+        if (!response.ok) {
+          console.error('GitHub API error:', response.status, response.statusText);
+          throw new Error(`Failed to fetch GitHub repos: ${response.status} ${response.statusText}`);
         }
-      });
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch GitHub repos: ${response.status} ${response.statusText}`);
+        const repos = await response.json();
+        console.log(`Fetched ${repos.length} repos`);
+
+        const ignoredRepos = ["personal-portfolio", "gntech-test-carlos", "sistema_ponto", "ponto_web"];
+        console.log("Repositories to include:", ignoredRepos);
+
+        const filteredRepos = repos
+          .filter((repo: any) => {
+            const repoName = repo.name.trim().toLowerCase();
+            console.log("Checking repository:", repoName);
+            const shouldInclude = ignoredRepos.includes(repoName);
+            console.log("Should include:", shouldInclude);
+            return shouldInclude;
+          })
+          .map((repo: any, index: number) => ({
+            id: repo.id,
+            name: repo.name,
+            description: repo.description || "No description provided",
+            image: `/github_images/${index}.png`,
+            technologies: repo.topics || [],
+            repository: repo.html_url,
+            demo: repo.homepage || null
+          }));
+
+        console.log('Filtered repos:', filteredRepos);
+
+        return {
+          statusCode: 200,
+          headers: corsHeaders,
+          body: JSON.stringify(filteredRepos),
+        };
+      } catch (error) {
+        console.error('Error in GitHub repos handler:', error);
+        return {
+          statusCode: 500,
+          headers: corsHeaders,
+          body: JSON.stringify({ 
+            message: 'Error fetching GitHub repositories',
+            error: error instanceof Error ? error.message : 'Unknown error'
+          }),
+        };
       }
-
-      const repos = await response.json();
-      console.log(`Fetched ${repos.length} repos`);
-
-      const ignoredRepos = ["personal-portfolio", "gntech-test-carlos", "sistema_ponto", "ponto_web"];
-      console.log("Repositories to include:", ignoredRepos);
-
-      const filteredRepos = repos
-        .filter((repo: any) => {
-          const repoName = repo.name.trim().toLowerCase();
-          console.log("Checking repository:", repoName);
-          const shouldInclude = ignoredRepos.includes(repoName);
-          console.log("Should include:", shouldInclude);
-          return shouldInclude;
-        })
-        .map((repo: any, index: number) => ({
-          id: repo.id,
-          name: repo.name,
-          description: repo.description || "No description provided",
-          image: `/github_images/${index}.png`,
-          technologies: repo.topics || [],
-          repository: repo.html_url,
-          demo: repo.homepage || null
-        }));
-
-      return {
-        statusCode: 200,
-        headers: corsHeaders,
-        body: JSON.stringify(filteredRepos),
-      };
     }
 
     // Handle 404 for unknown routes
