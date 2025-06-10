@@ -7,7 +7,7 @@ const Hero = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="home" className="container mx-auto px-4 py-10">
+    <section id="home" className="container mx-auto px-4 py-10 scroll-mt-24">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
         <motion.div 
           className="lg:col-span-3"

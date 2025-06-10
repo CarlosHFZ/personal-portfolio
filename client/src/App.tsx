@@ -26,7 +26,7 @@ function App() {
         className="font-sans bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100 min-h-screen flex flex-col"
       >
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 pt-24">
           <Router />
         </main>
         <Footer />
