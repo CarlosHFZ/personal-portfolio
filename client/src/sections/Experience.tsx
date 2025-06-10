@@ -6,10 +6,21 @@ import { resume } from "@/data/resume";
 
 const Experience = () => {
   const { t } = useTranslation();
-  const { experiences, awards } = resume;
+  const { experiences, awards } = resume as {
+    experiences: Array<{
+      role: string;
+      company: string;
+      period: string;
+      responsibilities: string[];
+    }>;
+    awards: typeof resume.awards;
+  };
 
   return (
-    <section id="experience" className="container mx-auto px-4 py-16">
+    <section
+      id="experience"
+      className="container mx-auto px-4 py-16 scroll-mt-24"
+    >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
@@ -17,12 +28,12 @@ const Experience = () => {
           </h2>
           <div className="w-20 h-1 bg-primary dark:bg-primary mx-auto mt-3"></div>
         </div>
-        
+
         <div className="relative pl-8 animate-on-scroll">
           <div className="timeline-line"></div>
-          
+
           {experiences.map((exp, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -47,12 +58,14 @@ const Experience = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   <ul className="mt-4 space-y-3 text-gray-700 dark:text-gray-300">
                     {exp.responsibilities.map((item, i) => (
                       <li key={i} className="flex gap-3">
                         <CheckCircle className="text-green-500 mt-1 flex-shrink-0 h-5 w-5" />
-                        <p>{t(`experience.responsibilities.${exp.role}.${i}`)}</p>
+                        <p>
+                          {t(`experience.responsibilities.${exp.role}.${i}`)}
+                        </p>
                       </li>
                     ))}
                   </ul>
@@ -61,13 +74,13 @@ const Experience = () => {
             </motion.div>
           ))}
         </div>
-        
+
         {/* Awards */}
         <div className="mt-12">
           <h3 className="font-heading font-semibold text-2xl bg- text-gray-900 dark:text-white mb-6 ">
             {t("experience.awards.title")}
           </h3>
-          
+
           <Card className="animate-on-scroll ">
             <CardContent className="p-6 md:p-8">
               {awards.map((award, index) => (
