@@ -71,7 +71,7 @@ const Projects = () => {
   const displayProjects = (githubRepos && Array.isArray(githubRepos) ? githubRepos : projects as Project[])
 
   return (
-    <section id="projects" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-slate-900 rounded-3xl">
+    <section id="projects" className="container mx-auto px-4 py-16 bg-gray-50 dark:bg-slate-900 rounded-3xl scroll-mt-24">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
