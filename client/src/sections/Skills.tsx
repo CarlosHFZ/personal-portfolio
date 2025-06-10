@@ -10,7 +10,7 @@ const Skills = () => {
   const { frontendSkills, backendSkills, databaseSkills, toolSkills, softSkills } = resume.skills;
 
   return (
-    <section id="skills" className="container mx-auto px-4 py-16 rounded-3xl bg-gray-50 dark:bg-slate-900">
+    <section id="skills" className="container mx-auto px-4 py-16 rounded-3xl bg-gray-50 dark:bg-slate-900 scroll-mt-24">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-heading font-bold text-gray-900 dark:text-white">
